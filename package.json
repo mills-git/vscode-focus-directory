@@ -1,0 +1,38 @@
+{
+  "name": "focus-directory",
+  "displayName": "Focus a Directory",
+  "description": "Search directories in the current workspace and focus one in the file Explorer.",
+  "version": "0.0.1",
+  "publisher": "local-dev",
+  "private": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "focusDirectory.focus",
+        "title": "Focus a Directory"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc --noEmit -p ./ && node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "node esbuild.js --minify",
+    "vscode:prepublish": "npm run package"
+  },
+  "dependencies": {
+    "ignore": "^5.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.5.0"
+  }
+}
