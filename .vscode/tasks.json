@@ -4,6 +4,7 @@
     {
       "type": "npm",
       "script": "watch",
+      "path": "extension",
       "problemMatcher": {
         "pattern": {
           "regexp": "^(.*)$",

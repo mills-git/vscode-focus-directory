@@ -11,4 +11,4 @@ interface FileSystem<T extends Uri> {
     ): Thenable<{ name: string; isDirectory: boolean }[]>;
 }
 
-export { FileSystem };
+export type { FileSystem };

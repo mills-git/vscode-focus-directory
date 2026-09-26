@@ -1,0 +1,21 @@
+{
+  "name": "focus-directory-cli",
+  "version": "0.0.1",
+  "description": "List the directories in a project, respecting .gitignore",
+  "license": "MIT",
+  "private": true,
+  "bin": {
+    "focus-directory": "dist/cli.js"
+  },
+  "scripts": {
+    "start": "tsx cli.ts",
+    "typecheck": "tsc -p ./",
+    "build": "npm run typecheck && node esbuild.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "esbuild": "^0.23.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  }
+}

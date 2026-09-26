@@ -11,7 +11,7 @@ class LocalFileSystem implements FileSystem<string> {
         return path.join(directoryUri, pathToJoin);
     }
 
-    async readFile(fileUri: string): Promise<Uint8Array<ArrayBufferLike>> {
+    async readFile(fileUri: string): Promise<Uint8Array<ArrayBuffer>> {
         return await fs.readFile(fileUri);
     }
 
