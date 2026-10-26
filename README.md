@@ -1,34 +1,47 @@
 # Focus a Directory
 
-Search directories in your open workspace by name and jump straight to one in the file Explorer — no more clicking through nested folders to find where something lives.
+Search the directories in a project by name and jump straight to one. This repository contains two things that share the same scanning logic:
 
-## Usage
+| Folder | What it is |
+| --- | --- |
+| [`extension/`](extension) | The **Focus a Directory** VS Code extension. Its [README](extension/README.md) is the Marketplace page; release notes are in [`extension/CHANGELOG.md`](extension/CHANGELOG.md). |
+| [`cli/`](cli) | A small command line tool that lists a project's directories using the same code, `.gitignore` rules included. Not published. |
 
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Run **Focus a Directory**
-3. Start typing to fuzzy-search directory names in your workspace
-4. Select one — the Explorer view switches into focus and expands/highlights that exact directory
+The scanner (`extension/src/DirectoryScanner.ts`) is written against a small `FileSystem` interface, with one implementation backed by the VS Code API and one backed by Node's `fs`. The CLI reuses the Node one directly from `extension/src`.
 
-In a multi-root workspace, each result's description shows which workspace folder it belongs to.
+## Extension
 
-## What gets excluded
+```bash
+cd extension
+npm ci
+```
 
-The directory list respects:
+Open the repository in VS Code and press **F5** to launch an Extension Development Host with the extension loaded. Other scripts, from `extension/`:
 
-- Your workspace's `.gitignore` file(s) — including nested `.gitignore`s in subdirectories, layered the same way Git itself resolves them
-- VS Code's `files.exclude` and `search.exclude` settings
-- `.git` directories, always
+| Command | Does |
+| --- | --- |
+| `npm run compile` | Type-check and bundle to `dist/` |
+| `npm test` | Run the unit tests |
+| `npm run test:coverage` | Run the tests with a coverage report |
 
-So build output, dependency folders, and anything else you've already told Git or VS Code to ignore won't clutter the picker.
+## CLI
 
-## Requirements
+The CLI bundles the extension's source, which imports `ignore` from `extension/node_modules`, so install both:
 
-None beyond VS Code `^1.85.0` — no configuration needed to get started.
+```bash
+cd extension && npm ci
+cd ../cli && npm ci
+```
 
-## Known limitations
+Then, from `cli/`:
 
-- The workspace is re-scanned on every invocation (no caching or file-watching yet), so very large monorepos may take a moment for the picker to populate.
+```bash
+npm run build
+node dist/cli.js [path]
+```
 
-## Release Notes
+It prints one directory per line, relative to `[path]` (default: the current directory), skipping `.git` and anything ignored by `.gitignore`. `npm start -- [path]` runs it straight from source with `tsx`.
 
-See [CHANGELOG.md](CHANGELOG.md).
+## License
+
+[MIT](extension/LICENSE)

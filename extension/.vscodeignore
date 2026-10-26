@@ -5,5 +5,6 @@ out/**
 node_modules/**
 esbuild.js
 tsconfig.json
-*.map
+icon.svg
+**/*.map
 .gitignore

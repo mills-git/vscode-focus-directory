@@ -3,11 +3,13 @@
   "displayName": "Focus a Directory",
   "description": "Search directories in the current workspace and focus one in the file Explorer.",
   "version": "0.0.1",
-  "publisher": "local-dev",
+  "publisher": "mills-git",
   "license": "MIT",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mills-git/vscode-focus-directory.git"
+    "url": "https://github.com/mills-git/vscode-focus-directory.git",
+    "directory": "extension"
   },
   "bugs": {
     "url": "https://github.com/mills-git/vscode-focus-directory/issues"
